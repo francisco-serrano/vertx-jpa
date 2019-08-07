@@ -14,14 +14,14 @@ public class CarController {
     @Autowired
     private CarRepository repository;
 
-    public Car getCar(String id) {
-        Optional<Car> car = repository.findById(id);
+    public Car getCarByPublicId(String id) {
+        Optional<Car> car = repository.findByCarPublicId(id);
 
         return car.orElse(null);
     }
 
     public Car addCar(Car car) {
-        System.out.println(Json.encode(car));
+        car.setCarPublicId(UUID.randomUUID().toString());
 
         return repository.save(car);
     }

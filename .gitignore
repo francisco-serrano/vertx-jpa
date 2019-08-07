@@ -1,0 +1,5 @@
+/.idea
+/.vertx
+/mysql
+/target
+*.iml

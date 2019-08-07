@@ -1,0 +1,58 @@
+version: '3'
+
+networks:
+  streamingnetwork:
+    external: false
+
+services:
+  sampleapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+      - kafka
+    networks:
+      - default
+      - streamingnetwork
+
+  mysql:
+    image: mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - default
+      - streamingnetwork
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - '2181:2181'
+    hostname: zookeeper
+    networks:
+      - default
+      - streamingnetwork
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - '9092:9092'
+    hostname: kafka
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+    networks:
+      - default
+      - streamingnetwork
+
+

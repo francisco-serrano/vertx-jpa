@@ -1,11 +1,6 @@
 package application.entity;
 
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 public class Car {
@@ -14,8 +9,6 @@ public class Car {
     }
 
     public Car(String brand, String model, String version, int engineSize, int horsePower) {
-//        this.carPublicId = carPublicId;
-        this.carPublicId = UUID.randomUUID().toString();
         this.brand = brand;
         this.model = model;
         this.version = version;
@@ -23,15 +16,11 @@ public class Car {
         this.horsePower = horsePower;
     }
 
-//    @Id
-//    @GeneratedValue()
-//    private int id;
-
-//    @Column(nullable = false)
     @Id
-    @Column(columnDefinition = "varchar(32)")
-//    @Type(type = "org.hibernate.type.UUIDBinaryType")
-    @GeneratedValue()
+    @GeneratedValue
+    private int id;
+
+    @Column(columnDefinition = "varchar(36)")
     private String carPublicId;
 
     @Column(nullable = false)
@@ -49,13 +38,13 @@ public class Car {
     @Column(nullable = false)
     private int horsePower;
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCarPublicId() {
         return carPublicId;
