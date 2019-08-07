@@ -99,33 +99,33 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.3</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <manifestEntries>
-                                        <Main-Class>Main</Main-Class>
-                                        <Main-Verticle>application.verticle.CarVerticle</Main-Verticle>
-                                    </manifestEntries>
-                                </transformer>
-                            </transformers>
-                            <artifactSet/>
-                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
-                            </outputFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-shade-plugin</artifactId>-->
+<!--                <version>2.3</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>shade</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <transformers>-->
+<!--                                <transformer-->
+<!--                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+<!--                                    <manifestEntries>-->
+<!--                                        <Main-Class>SpringVertxApplication</Main-Class>-->
+<!--                                        <Main-Verticle>application.controller.CarVerticle</Main-Verticle>-->
+<!--                                    </manifestEntries>-->
+<!--                                </transformer>-->
+<!--                            </transformers>-->
+<!--                            <artifactSet/>-->
+<!--                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar-->
+<!--                            </outputFile>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

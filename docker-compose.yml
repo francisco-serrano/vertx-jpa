@@ -1,23 +1,25 @@
 version: '3'
 
 networks:
-  streamingnetwork:
+  carnetwork:
     external: false
 
 services:
-  sampleapi:
+  car-service:
     build:
       context: .
       dockerfile: Dockerfile
     working_dir: /app
     ports:
-      - 8080:8080
+      - '8080:8080'
+    environment:
+      spring.profiles.active: dev
     depends_on:
       - mysql
       - kafka
     networks:
       - default
-      - streamingnetwork
+      - carnetwork
 
   mysql:
     image: mysql
@@ -29,7 +31,7 @@ services:
       - ./mysql:/var/lib/mysql
     networks:
       - default
-      - streamingnetwork
+      - carnetwork
 
   zookeeper:
     image: wurstmeister/zookeeper
@@ -38,7 +40,7 @@ services:
     hostname: zookeeper
     networks:
       - default
-      - streamingnetwork
+      - carnetwork
 
   kafka:
     image: wurstmeister/kafka
@@ -53,6 +55,6 @@ services:
       - zookeeper
     networks:
       - default
-      - streamingnetwork
+      - carnetwork
 
 

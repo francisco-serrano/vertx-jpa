@@ -1,6 +1,6 @@
 package application;
 
-import application.verticle.CarVerticle;
+import application.controller.CarVerticle;
 import io.vertx.core.Vertx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
